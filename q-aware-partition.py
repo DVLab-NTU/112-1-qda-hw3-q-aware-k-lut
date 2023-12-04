@@ -30,13 +30,14 @@ class XAGNodeType(Enum):
 class XAGNode:
     fanins: list[IdType]     # fanin node ids
     inverted: list[bool]     # whether the corresponding fanin is inverted
-    fanouts = list[IdType]() # fanout node ids. This is calculated automatically by the XAG class.
+    fanouts: list[IdType]()  # fanout node ids. This is calculated automatically by the XAG class.
     typ: XAGNodeType         # node type
-
+    
     def __init__(self, fanins, inverted, typ):
         self.fanins = fanins
         self.inverted = inverted
         self.typ = typ
+        self.fanouts = list[IdType]()
         if typ == XAGNodeType.INPUT:
             # input nodes should not have fanins
             assert(len(fanins) == 0)
@@ -303,7 +304,6 @@ def main():
     ],
     [0, 1, 2, 3, 4, 5], # PI 
     [17]) # PO
-    
     parser = ArgumentParser()
 
     parser.add_argument('-n', '--cut-size', type=int, default=3, help='maximum cut size')
