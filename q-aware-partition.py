@@ -30,7 +30,7 @@ class XAGNodeType(Enum):
 class XAGNode:
     fanins: list[IdType]     # fanin node ids
     inverted: list[bool]     # whether the corresponding fanin is inverted
-    fanouts: list[IdType]()  # fanout node ids. This is calculated automatically by the XAG class.
+    fanouts: list[IdType]    # fanout node ids. This is calculated automatically by the XAG class.
     typ: XAGNodeType         # node type
     
     def __init__(self, fanins, inverted, typ):
